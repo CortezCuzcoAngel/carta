@@ -1,263 +1,56 @@
-html { background: #f2ead8; }
-
-body { margin: 0; background: #f2ead8; font-family: Georgia, "Times New Roman", serif; color: #2a211a; }
-
-.carta { padding-top: 1.6rem; }
-
-.carta .buscador { margin-top: 0; margin-bottom: .6rem; padding-inline: 1rem; }
-
-/*===== Carta virtual — Sumaq Wasi ===== */
-
-.carta {
-
---c-tinta: #2a211a;
-
---c-vino: #6b2737;
-
---c-papel: #fbf6ea;
-
---c-linea: #d9cdb2;
-
---c-oro: #c8923a;
-
---c-texto: #4a4238;
-
---mono: var(--fuente-mono, "Space Mono", ui-monospace, "SFMono-Regular", Menlo, monospace);
-
-padding-bottom: 4.5rem;
-
-}
-
-.carta .container { width: min(1100px, 100% - 2rem); margin-inline: auto; }
-
-
-
-/*---------- Encabezado ---------- */
-
-.carta-hero { text-align: center; padding: 3rem 0 1.6rem; }
-
-.carta-eyebrow {
-
-font-family: var(--mono); font-size: .8rem; letter-spacing: .18em;
-
-text-transform: uppercase; color: var(--c-vino); margin: 0 0 .6rem;
-
-}
-
-.carta-hero h1 { margin: 0 auto .8rem; max-width: 18ch; line-height: 1.1; font-size: clamp(2rem, 6vw, 3.4rem); color: var(--c-tinta); }
-
-.carta-intro { margin: 0 auto; max-width: 52ch; color: var(--c-texto); line-height: 1.55; }
-
-.buscador { max-width: 420px; margin: 1.4rem auto 0; }
-
-.buscador input {
-
-width: 100%; padding: .85rem 1.2rem; border-radius: 999px;
-
-border: 2px solid var(--c-tinta); background: var(--c-papel);
-
-font: inherit; color: var(--c-tinta); outline: none;
-
-}
-
-.buscador input:focus { border-color: var(--c-vino); box-shadow: 0 0 0 3px rgba(107, 39, 55, .15); }
-
-
-
-/*---------- Filtros ---------- */
-
-.carta-filtros { padding: .6rem 0 1.4rem; }
-
-.filtro-fila { display: flex; flex-wrap: wrap; justify-content: center; gap: .7rem; }
-
-.filtro-sep { border-top: 1px dashed var(--c-linea); margin: 1.2rem 0; }
-
-.pill {
-
-font-family: var(--mono); font-size: .82rem; letter-spacing: .06em; text-transform: uppercase;
-
-padding: .7rem 1.3rem; border-radius: 999px; background: transparent;
-
-border: 2px solid var(--c-tinta); color: var(--c-tinta);
-
-cursor: pointer; transition: background .2s, color .2s, transform .15s;
-
-}
-
-.pill:hover { transform: translateY(-1px); }
-
-.pill-grupo.activo { background: var(--c-tinta); color: #f6efdf; }
-
-.pill-cat { border-color: var(--c-vino); color: var(--c-vino); }
-
-.pill-cat.activo { background: var(--c-vino); color: #f6efdf; }
-
-
-
-/*---------- Lista ---------- */
-
-.carta-contador { text-align: center; font-family: var(--mono); font-size: .78rem; letter-spacing: .08em; text-transform: uppercase; color: var(--c-texto); margin: 0 0 1.4rem; }
-
-.lista-seccion { margin-bottom: 2.2rem; }
-
-.lista-titulo { display: flex; align-items: center; gap: .8rem; margin: 0 0 1rem; font-size: clamp(1.3rem, 4vw, 1.7rem); color: var(--c-tinta); }
-
-.lista-titulo::after { content: ""; flex: 1; border-top: 2px dotted var(--c-oro); }
-
-.lista-titulo small {
-
-order: 2; font-family: var(--mono); font-size: .7rem; font-weight: 400;
-
-background: var(--c-vino); color: #fff; padding: .2rem .6rem; border-radius: 999px;
-
-}
-
-.items { display: grid; grid-template-columns: 1fr; gap: .9rem; }
-
-
-
-.item {
-
-display: grid; grid-template-columns: 96px 1fr; gap: .9rem; align-items: center;
-
-background: var(--c-papel); border: 1.5px solid var(--c-linea); border-radius: 18px; padding: .7rem;
-
-transition: transform .2s, border-color .2s, box-shadow .2s;
-
-animation: entra .4s ease both; animation-delay: calc(var(--i, 0) * 40ms);
-
-}
-
-.item:hover { transform: translateY(-2px); border-color: var(--c-vino); box-shadow: 0 8px 20px rgba(42, 33, 26, .12); }
-
-
-
-.item-foto {
-
-position: relative; aspect-ratio: 1; padding: 0; border: 0; overflow: hidden; border-radius: 14px;
-
-background: linear-gradient(135deg, #e6d9bd, #d6c5a0); cursor: zoom-in;
-
-}
-
-.item-foto img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .3s; }
-
-.item:hover .item-foto img { transform: scale(1.06); }
-
-.item-foto.sin-foto { cursor: default; }
-
-.item-foto.sin-foto::after { content: attr(data-emoji); position: absolute; inset: 0; display: grid; place-items: center; font-size: 2.2rem; }
-
-
-
-.item-info { display: flex; flex-direction: column; gap: .3rem; min-width: 0; }
-
-.item-cat { font-family: var(--mono); font-size: .68rem; letter-spacing: .1em; text-transform: uppercase; color: var(--c-vino); }
-
-.item-top { display: flex; justify-content: space-between; align-items: flex-start; gap: .6rem; }
-
-.item-top h3 { margin: 0; font-size: 1.02rem; line-height: 1.25; color: var(--c-tinta); }
-
-.item-precio {
-
-flex: none; white-space: nowrap; font-family: var(--mono); font-weight: 700; font-size: .85rem;
-
-background: var(--c-vino); color: #fff; padding: .25rem .65rem; border-radius: 999px;
-
-}
-
-.item-info p {
-
-margin: 0;
-
-font-size: 14px;
-
-display: -webkit-box;
-
--webkit-line-clamp: 3;
-
-line-clamp: 3;
-
--webkit-box-orient: vertical;
-
-overflow: hidden;
-
-}
-
-.item-aviso { align-self: flex-start; font-size: .68rem; font-weight: 700; background: var(--c-oro); color: var(--c-tinta); padding: .15rem .55rem; border-radius: 999px; }
-
-
-
-.vacio { text-align: center; padding: 3rem 1rem; color: var(--c-texto); }
-
-
-
-/*---------- Visor de foto ---------- */
-
-.visor { position: fixed; inset: 0; z-index: 1000; display: none; place-items: center; padding: 1rem; background: rgba(20, 14, 10, .88); }
-
-.visor.abierto { display: grid; }
-
-.visor figure { position: relative; margin: 0; max-width: 640px; width: 100%; text-align: center; }
-
-.visor img { max-width: 100%; max-height: 72vh; border-radius: 16px; display: block; margin: 0 auto; }
-
-.visor figcaption { display: flex; justify-content: center; align-items: center; gap: .8rem; flex-wrap: wrap; margin-top: .9rem; color: #f6efdf; font-size: 1.05rem; }
-
-.visor figcaption strong { background: var(--c-vino); padding: .2rem .7rem; border-radius: 999px; font-family: var(--mono); font-size: .9rem; }
-
-.visor-cerrar { position: absolute; top: -.6rem; right: -.2rem; z-index: 2; width: 2.4rem; height: 2.4rem; border-radius: 50%; border: 0; background: #f6efdf; color: var(--c-tinta); font-size: 1.1rem; cursor: pointer; }
-
-
-
-@keyframes entra { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
-
-@media (prefers-reduced-motion: reduce) { .item { animation: none; } .item, .item-foto img, .pill { transition: none; } }
-
-
-
-/*---------- Tablet / computadora ---------- */
-
-@media (min-width: 600px) {
-
-.item { grid-template-columns: 120px 1fr; }
-
-}
-
-@media (min-width: 900px) {
-
-.items { grid-template-columns: 1fr 1fr; gap: 1rem; }
-
-}
-
-
-
-/*---------- Teléfono: filtros con scroll horizontal ---------- */
-
-@media (max-width: 700px) {
-
-.carta-hero { padding-top: 2rem; }
-
-.filtro-fila {
-
-flex-wrap: nowrap; justify-content: flex-start; overflow-x: auto; gap: .5rem;
-
-margin-inline: -1rem; padding: .2rem 1rem .6rem; scrollbar-width: none; scroll-snap-type: x proximity;
-
-}
-
-.filtro-fila::-webkit-scrollbar { display: none; }
-
-.pill { flex: none; scroll-snap-align: start; font-size: .74rem; padding: .6rem 1rem; }
-
-.filtro-sep { margin: .5rem 0 .8rem; }
-
-}
-
-@media (max-width: 380px) {
-
-.item { grid-template-columns: 84px 1fr; gap: .7rem; }
-
-.item-top h3 { font-size: .96rem; }
-
-}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Carta virtual — Sumaq Wasi</title>
+    <link rel="stylesheet" href="css/carta.css">
+    <link rel = "icon" href="images/logo.png" type ="image/png">
+
+</head>
+<body>
+<main class="carta">
+<div class="buscador">
+<input type="search" id="buscador" placeholder="Buscar un plato…" aria-label="Buscar un plato" autocomplete="off">
+
+</div>
+
+<section class="carta-filtros">
+    <div class="container">
+
+        <p class="texto-desliza">← Desliza para ver más categorías →</p>
+
+        <div class="filtro-fila" id="filtro-grupos"
+            role="group" aria-label="Grupos de la carta"></div>
+
+        <div class="filtro-sep"></div>
+
+        <p class="texto-desliza">← Desliza para ver más opciones →</p>
+
+        <div class="filtro-fila" id="filtro-cats"
+            role="group" aria-label="Categorías"></div>
+
+    </div>
+</section>
+
+</section>
+<section class="carta-lista">
+<div class="container">
+<p class="carta-contador" id="contador" aria-live="polite"></p>
+<div id="lista"></div>
+</div>
+</section>
+
+</main>
+<div class="visor" id="visor" role="dialog" aria-modal="true" aria-label="Foto del plato">
+<figure>
+<button type="button" class="visor-cerrar" id="visor-cerrar" aria-label="Cerrar">✕</button>
+<img id="visor-img" src="" alt="">
+<figcaption><span id="visor-nombre"></span><strong id="visor-precio"></strong></figcaption>
+</figure>
+</div>
+
+    <script src="js/carta.js" defer></script>
+</body>
+
+</html>
