@@ -130,7 +130,7 @@ const D = [
     "Sándwich de Chicharrón de Cerdo",
     "S/ 10",
     "sandwich-chicharron.jpg",
-    "Pan francés relleno de chicharrón de cerdo, camote y salsa criolla.",
+    "Pan de hamburguesa relleno de chicharrón de cerdo, camote y salsa criolla.",
   ],
 
   [
@@ -138,7 +138,7 @@ const D = [
     "Sándwich de Pollo",
     "S/ 6",
     "sandwich-pollo.jpg",
-    "Pan francés con pollo deshilachado y mayonesa casera.",
+    "Pan de hamburguesa  con pollo deshilachado y mayonesa casera.",
   ],
 
   [
@@ -146,7 +146,7 @@ const D = [
     "Sándwich de Chorizo",
     "S/ 6",
     "sandwich-chorizo.jpg",
-    "Pan francés con chorizo artesanal a la plancha.",
+    "Pan de hamburguesa  con chorizo artesanal a la plancha.",
   ],
 
   [
@@ -154,7 +154,7 @@ const D = [
     "Sándwich de Salchicha",
     "S/ 6",
     "sandwich-salchicha.jpg",
-    "Pan francés con salchicha dorada y preparada al momento.",
+    "Pan de hamburguesa  con salchicha dorada y preparada al momento.",
   ],
 
   [
@@ -162,7 +162,7 @@ const D = [
     "Sándwich de Queso Suizo",
     "S/ 4",
     "sandwich-queso-suizo.jpg",
-    "Pan francés con queso suizo fundido.",
+    "Pan de hamburguesa  con queso suizo fundido.",
   ],
 
   [
@@ -170,7 +170,7 @@ const D = [
     "Sándwich de Queso Mantecoso",
     "S/ 4",
     "sandwich-queso-mantecoso.jpg",
-    "Pan francés con tradicional queso mantecoso cajamarquino.",
+    "Pan de hamburguesa  con tradicional queso mantecoso cajamarquino.",
   ],
 
   [
@@ -178,7 +178,7 @@ const D = [
     "Sándwich de Huevo",
     "S/ 4",
     "sandwich-huevo.jpg",
-    "Pan francés con huevo preparado al momento.",
+    "Pan de hamburguesa  con huevo preparado al momento.",
   ],
 
   [
@@ -186,7 +186,7 @@ const D = [
     "Sándwich de Mantequilla",
     "S/ 4",
     "sandwich-mantequilla.jpg",
-    "Pan francés untado con mantequilla fresca.",
+    "Pan de hamburguesa untado con mantequilla fresca.",
   ],
 
   [
@@ -194,7 +194,7 @@ const D = [
     "Sándwich de Mermelada",
     "S/ 4",
     "sandwich-mermelada.jpg",
-    "Pan francés con mermelada de fruta.",
+    "Pan de hamburguesa  con mermelada de fruta.",
   ],
 
   [
@@ -763,6 +763,14 @@ const D = [
     "S/ 10",
     "papas-fritas.jpg",
     "Papas fritas crocantes y doradas.",
+  ],
+
+  [
+    "Guarniciones",
+    "Arroz de Trigo",
+    "S/ 6",
+    "arroz-trigo.jpg",
+    "Tradicional arroz de trigo, preparado y servido como acompañamiento para tus platos favoritos.",
   ],
 
   [
