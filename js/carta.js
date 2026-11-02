@@ -234,7 +234,7 @@ const D = [
     "Choclo con Queso",
     "S/ 5",
     "choclo-queso.jpg",
-    "Choclo cajamarquino acompañado de queso fresco artesanal.",
+    "Choclo cajamarquino acompañado de queso zuiso.",
   ],
 
   [
@@ -266,7 +266,7 @@ const D = [
     "1/4 Cuy Frito",
     "S/ 22",
     "cuarto-cuy-frito.jpg",
-    "Un cuarto de cuy frito acompañado de papa picante, mote y ensalada.",
+    "Un cuarto de cuy frito acompañado de papa picante, arroz(blanco o trigo) y ensalada.",
   ],
 
   [
@@ -274,7 +274,7 @@ const D = [
     "1/2 Cuy Frito",
     "S/ 45",
     "medio-cuy-frito.jpg",
-    "Medio de cuy frito acompañado de papa picante, mote y ensalada.",
+    "Medio de cuy frito acompañado de papa picante, arroz(blanco o trigo) y ensalada.",
   ],
 
   [
@@ -282,7 +282,7 @@ const D = [
     "1 Cuy Frito",
     "S/ 90",
     "entero-cuy-frito.jpg",
-    "Un cuy frito entero acompañado de papa picante, mote y ensalada.",
+    "Un cuy frito entero acompañado de papa picante, arroz(blanco o trigo) y ensalada.",
   ],
 
   [
@@ -370,7 +370,7 @@ const D = [
     "Milanesa a lo Pobre",
     "S/ 28",
     "milanesa-pobre.jpg",
-    "Milanesa de pollo con huevo frito, plátano, arroz y papas fritas.",
+    "Milanesa de pollo con huevo frito, plátano, chorizo, arroz y papas fritas.",
   ],
 
   [
@@ -386,7 +386,7 @@ const D = [
     "Bistec a lo Pobre",
     "S/ 27",
     "bistec-pobre.jpg",
-    "Bistec acompañado de huevo, plátano, arroz y papas fritas.",
+    "Bistec acompañado de huevo, plátano, arroz, chorizo y papas fritas.",
   ],
 
   [
@@ -410,7 +410,7 @@ const D = [
     "Tallarín Saltado de Pollo",
     "S/ 26",
     "tallarin-saltado-pollo.jpg",
-    "Tallarines salteados al wok con jugosos trozos de pollo y verduras frescas.",
+    "Tallarines salteados, con jugosos trozos de pollo y verduras frescas.",
   ],
 
   [
@@ -450,7 +450,7 @@ const D = [
     "Ceviche de Tollo",
     "S/ 28",
     "Ceviches_bar/ceviche-tollo.jpg",
-    "Tradicional ceviche de tollo fresco marinado en limón, con camote, choclo y cancha.",
+    "Tradicional ceviche de tollo fresco marinado en limón, con camote y cancha.",
   ],
 
   [
@@ -554,7 +554,7 @@ const D = [
     "Chaufa con Mariscos",
     "S/ 35",
     "Ceviches_bar/chaufa-mariscos.jpg",
-    "Arroz chaufa salteado al wok con una variedad de mariscos.",
+    "Arroz chaufa salteado con una variedad de mariscos.",
   ],
 
   [
@@ -658,7 +658,7 @@ const D = [
     "Café Pasado",
     "S/ 5",
     "cafe-pasado.jpg",
-    "Aromático café cajamarquino preparado mediante el tradicional método de filtrado.",
+    "Aromático café cajamarquino.",
   ],
 
   [
