@@ -264,7 +264,7 @@ const D = [
   [
     "Platos_Tipicos",
     "1/4 Cuy Frito",
-    "S/ 22",
+    "S/ 25",
     "cuarto-cuy-frito.jpg",
     "Un cuarto de cuy frito acompañado de papa picante, arroz(blanco o trigo) y ensalada.",
   ],
