@@ -191,7 +191,7 @@
         "Huevos revueltos cremosos preparados al instante.",
     ],
 
-    // Entradas
+    // Entradas 
     [
         "Entradas",
         "Humita",
