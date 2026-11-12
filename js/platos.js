@@ -191,7 +191,7 @@
         "Huevos revueltos cremosos preparados al instante.",
     ],
 
-    // Entradas 
+    // Entradas
     [
         "Entradas",
         "Humita",
@@ -727,7 +727,7 @@
         "Quesillo con Miel",
         "S/ 5",
         "quesillo-miel.jpg",
-        "Tradicional quesillo cajamarquino acompañado de miel de abeja.",
+        "Tradicional quesillo cajamarquino acompañado de miel de caña.",
     ],
     [
         "Postres",
@@ -1170,4 +1170,3 @@
     imagen: "images/" + img,
     resumen,
     }));
-
