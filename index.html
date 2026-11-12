@@ -4,53 +4,62 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Carta virtual — Sumaq Wasi</title>
-    <link rel="stylesheet" href="css/carta.css">
-    <link rel = "icon" href="images/logo.png" type ="image/png">
-
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/carta.css">
+<link rel="icon" href="images/logo.png" type="image/png">
 </head>
 <body>
 <main class="carta">
-<div class="buscador">
-<input type="search" id="buscador" placeholder="Buscar un plato…" aria-label="Buscar un plato" autocomplete="off">
 
-</div>
-
-<section class="carta-filtros">
+  <div class="carta-barra" id="barra">
     <div class="container">
+      <div class="herramientas">
+        <div class="buscador">
+          <input type="search" id="buscador" placeholder="Buscar un plato…" aria-label="Buscar un plato" autocomplete="off">
+          <button type="button" id="limpiar" class="limpiar" aria-label="Borrar búsqueda" hidden>✕</button>
+        </div>
+        <select id="orden" aria-label="Ordenar platos">
+          <option value="carta">Orden de la carta</option>
+          <option value="asc">Precio: menor a mayor</option>
+          <option value="desc">Precio: mayor a menor</option>
+        </select>
+      </div>
 
-        <p class="texto-desliza">← Desliza para ver más categorías →</p>
-
-        <div class="filtro-fila" id="filtro-grupos"
-            role="group" aria-label="Grupos de la carta"></div>
-
-        <div class="filtro-sep"></div>
-
-        <p class="texto-desliza">← Desliza para ver más opciones →</p>
-
-        <div class="filtro-fila" id="filtro-cats"
-            role="group" aria-label="Categorías"></div>
-
+      <div class="filtro-fila" id="filtro-grupos" role="group" aria-label="Grupos de la carta"></div>
+      <div class="filtro-sep"></div>
+      <p class="texto-desliza" id="pista">← Desliza para ver más categorías →</p>
+      <div class="filtro-fila" id="filtro-cats" role="group" aria-label="Categorías"></div>
     </div>
-</section>
+  </div>
 
-</section>
-<section class="carta-lista">
-<div class="container">
-<p class="carta-contador" id="contador" aria-live="polite"></p>
-<div id="lista"></div>
-</div>
-</section>
+  <section class="carta-lista">
+    <div class="container">
+      <p class="carta-contador" id="contador" aria-live="polite"></p>
+      <div id="lista"></div>
+    </div>
+  </section>
 
 </main>
-<div class="visor" id="visor" role="dialog" aria-modal="true" aria-label="Foto del plato">
-<figure>
-<button type="button" class="visor-cerrar" id="visor-cerrar" aria-label="Cerrar">✕</button>
-<img id="visor-img" src="" alt="">
-<figcaption><span id="visor-nombre"></span><strong id="visor-precio"></strong></figcaption>
-</figure>
+
+<button type="button" class="arriba" id="arriba" aria-label="Volver arriba">↑</button>
+
+<div class="visor" id="visor" role="dialog" aria-modal="true" aria-label="Detalle del plato">
+  <button type="button" class="visor-cerrar" id="visor-cerrar" aria-label="Cerrar">✕</button>
+  <button type="button" class="visor-nav ant" id="visor-ant" aria-label="Plato anterior">‹</button>
+  <figure>
+    <img id="visor-img" src="" alt="">
+    <figcaption>
+      <small id="visor-cat"></small>
+      <div class="visor-linea"><span id="visor-nombre"></span><strong id="visor-precio"></strong></div>
+      <p id="visor-desc"></p>
+    </figcaption>
+  </figure>
+  <button type="button" class="visor-nav sig" id="visor-sig" aria-label="Plato siguiente">›</button>
 </div>
 
-    <script src="js/carta.js" defer></script>
+<script src="js/platos.js"></script>
+<script src="js/carta.js" defer></script>
 </body>
-
 </html>
