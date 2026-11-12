@@ -121,7 +121,7 @@
     $("#filtro-cats").scrollLeft = 0;
   }
 
-  // ---------- Lista ----------
+  // ---------- Lista ---------
   function itemHTML(p, i) {
     const c = infoCat(p.categoria);
     const nombre = String(p.nombre || "").trim();
