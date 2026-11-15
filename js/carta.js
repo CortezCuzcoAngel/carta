@@ -71,7 +71,8 @@
     limpiar = $("#limpiar"),
     pista = $("#pista");
   const verMas = $("#ver-mas"),
-    filaCats = $("#filtro-cats");
+    filaCats = $("#filtro-cats"),
+    panel = $("#panel-cats");
 
   if (typeof PLATOS === "undefined") {
     lista.innerHTML =
@@ -114,7 +115,7 @@
     const vis = ordenCats.filter(
       (k) => estado.grupo === "todos" || infoCat(k).grupo === estado.grupo,
     );
-    $("#filtro-cats").innerHTML = [
+    const chips = [
       `<button type="button" class="pill pill-cat${estado.cat === "todos" ? " activo" : ""}" data-cat="todos">Todos</button>`,
     ]
       .concat(
@@ -124,7 +125,9 @@
         ),
       )
       .join("");
-    $("#filtro-cats").scrollLeft = 0;
+    filaCats.innerHTML = chips;
+    panel.innerHTML = chips;
+    filaCats.scrollLeft = 0;
     colapsar();
     actualizarVerMas();
   }
@@ -138,7 +141,7 @@
     );
     return `
       <article class="item" data-i="${i}" role="button" tabindex="0" aria-label="Ver ${esc(nombre)}">
-        <div class="item-foto" data-emoji="${c.emoji}"><img src="${esc(p.imagen)}" alt="${esc(nombre)}" loading="lazy"></div>
+        <div class="item-foto" data-emoji="${c.emoji}"><img src="${esc(p.imagen)}" alt="${esc(nombre)}" loading="lazy" decoding="async"></div>
         <div class="item-info">
           <span class="item-cat">${esc(c.label)}</span>
           <div class="item-top"><h3>${esc(nombre)}</h3><i class="punteado"></i><span class="item-precio">${esc(precioTxt(p.precio))}</span></div>
@@ -233,23 +236,38 @@
       });
   }
 
-  // ---------- "Ver más": muestra todas las categorías juntas ----------
+  // ---------- "Ver más": panel con todas las categorías (flota encima, no mueve la lista) ----------
+  let yAlAbrir = 0;
   function colapsar() {
-    filaCats.classList.remove("expandido");
+    panel.hidden = true;
     verMas.textContent = "Ver más ▾";
     verMas.setAttribute("aria-expanded", "false");
   }
   function actualizarVerMas() {
-    if (filaCats.classList.contains("expandido")) return;
+    if (!panel.hidden) return;
     verMas.hidden = filaCats.scrollWidth <= filaCats.clientWidth + 4; // solo si hay categorías ocultas
   }
   verMas.addEventListener("click", () => {
-    const abre = !filaCats.classList.contains("expandido");
-    filaCats.classList.toggle("expandido", abre);
+    const abre = panel.hidden;
+    panel.hidden = !abre;
     verMas.textContent = abre ? "Ver menos ▴" : "Ver más ▾";
     verMas.setAttribute("aria-expanded", String(abre));
-    if (abre) filaCats.scrollLeft = 0;
-    else actualizarVerMas();
+    if (abre) {
+      yAlAbrir = window.scrollY;
+      barra.classList.remove("oculta");
+    } else actualizarVerMas();
+  });
+  // Tocar fuera del panel o Escape lo cierra
+  document.addEventListener("click", (e) => {
+    if (
+      !panel.hidden &&
+      !panel.contains(e.target) &&
+      !verMas.contains(e.target)
+    )
+      colapsar();
+  });
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && !panel.hidden) colapsar();
   });
   window.addEventListener("resize", actualizarVerMas);
   window.addEventListener("load", actualizarVerMas);
@@ -267,24 +285,32 @@
     pintarLista();
     irALista();
   });
-  $("#filtro-cats").addEventListener("click", (e) => {
+  function elegirCategoria(e) {
     const b = e.target.closest("[data-cat]");
     if (!b) return;
     estado.cat = b.dataset.cat;
     document
       .querySelectorAll(".pill-cat")
-      .forEach((x) => x.classList.toggle("activo", x === b));
+      .forEach((x) =>
+        x.classList.toggle("activo", x.dataset.cat === estado.cat),
+      );
     colapsar(); // al elegir una categoría, todo vuelve a la fila normal
-    requestAnimationFrame(() =>
-      b.scrollIntoView({
-        inline: "center",
-        block: "nearest",
-        behavior: "smooth",
-      }),
+    const chip = [...filaCats.children].find(
+      (x) => x.dataset.cat === estado.cat,
     );
+    if (chip)
+      requestAnimationFrame(() =>
+        chip.scrollIntoView({
+          inline: "center",
+          block: "nearest",
+          behavior: "smooth",
+        }),
+      );
     pintarLista();
     irALista();
-  });
+  }
+  filaCats.addEventListener("click", elegirCategoria);
+  panel.addEventListener("click", elegirCategoria);
   buscador.addEventListener("input", () => {
     estado.q = buscador.value;
     limpiar.hidden = !buscador.value;
@@ -326,11 +352,13 @@
     () => {
       const y = window.scrollY,
         dy = y - ultimo;
-      if (Math.abs(dy) > 6) {
+      if (!panel.hidden) {
+        // Con el panel abierto la barra no se oculta; solo se cierra si el usuario se aleja bastante
+        if (Math.abs(y - yAlAbrir) > 160) colapsar();
+        ultimo = y;
+      } else if (Math.abs(dy) > 6) {
         const escribiendo = document.activeElement === buscador;
-        const ocultar = dy > 0 && y > 260 && !escribiendo;
-        barra.classList.toggle("oculta", ocultar);
-        if (ocultar) colapsar();
+        barra.classList.toggle("oculta", dy > 0 && y > 260 && !escribiendo);
         ultimo = y;
       }
       arriba.classList.toggle("ver", y > 700);
