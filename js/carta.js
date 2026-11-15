@@ -1,3 +1,5 @@
+/* ===== Carta virtual — Sumaq Wasi (lógica) =====
+   Requiere js/platos.js (con const PLATOS) cargado antes que este archivo. */
 (function () {
   "use strict";
 
@@ -6,6 +8,7 @@
     { id: "casa", nombre: "El sabor de casa" },
   ];
 
+  // Clave = valor de "categoria" en tus platos
   const CATEGORIAS = {
     Desayunos: { label: "Desayunos", grupo: "casa", emoji: "☕" },
     Platos_Tipicos: { label: "Platos típicos", grupo: "casa", emoji: "🍽️" },
@@ -67,6 +70,8 @@
   const buscador = $("#buscador"),
     limpiar = $("#limpiar"),
     pista = $("#pista");
+  const verMas = $("#ver-mas"),
+    filaCats = $("#filtro-cats");
 
   if (typeof PLATOS === "undefined") {
     lista.innerHTML =
@@ -93,8 +98,9 @@
     .concat(clavesUsadas.filter((k) => !CATEGORIAS[k]));
 
   const estado = { grupo: "todos", cat: "todos", q: "", orden: "carta" };
-  let visibles = [];
+  let visibles = []; // platos mostrados ahora, en orden (para el visor)
 
+  // ---------- Filtros ----------
   function pintarGrupos() {
     $("#filtro-grupos").innerHTML = [{ id: "todos", nombre: "Todos" }]
       .concat(GRUPOS)
@@ -119,9 +125,11 @@
       )
       .join("");
     $("#filtro-cats").scrollLeft = 0;
+    colapsar();
+    actualizarVerMas();
   }
 
-  // ---------- Lista ---------
+  // ---------- Lista ----------
   function itemHTML(p, i) {
     const c = infoCat(p.categoria);
     const nombre = String(p.nombre || "").trim();
@@ -214,6 +222,7 @@
     revelar();
   }
 
+  // Si el usuario ya bajó, vuelve al inicio de la lista al cambiar de filtro
   function irALista() {
     const top = lista.getBoundingClientRect().top,
       h = barra.offsetHeight;
@@ -224,6 +233,28 @@
       });
   }
 
+  // ---------- "Ver más": muestra todas las categorías juntas ----------
+  function colapsar() {
+    filaCats.classList.remove("expandido");
+    verMas.textContent = "Ver más ▾";
+    verMas.setAttribute("aria-expanded", "false");
+  }
+  function actualizarVerMas() {
+    if (filaCats.classList.contains("expandido")) return;
+    verMas.hidden = filaCats.scrollWidth <= filaCats.clientWidth + 4; // solo si hay categorías ocultas
+  }
+  verMas.addEventListener("click", () => {
+    const abre = !filaCats.classList.contains("expandido");
+    filaCats.classList.toggle("expandido", abre);
+    verMas.textContent = abre ? "Ver menos ▴" : "Ver más ▾";
+    verMas.setAttribute("aria-expanded", String(abre));
+    if (abre) filaCats.scrollLeft = 0;
+    else actualizarVerMas();
+  });
+  window.addEventListener("resize", actualizarVerMas);
+  window.addEventListener("load", actualizarVerMas);
+
+  // ---------- Eventos de filtros ----------
   $("#filtro-grupos").addEventListener("click", (e) => {
     const b = e.target.closest("[data-grupo]");
     if (!b) return;
@@ -243,11 +274,14 @@
     document
       .querySelectorAll(".pill-cat")
       .forEach((x) => x.classList.toggle("activo", x === b));
-    b.scrollIntoView({
-      inline: "center",
-      block: "nearest",
-      behavior: "smooth",
-    });
+    colapsar(); // al elegir una categoría, todo vuelve a la fila normal
+    requestAnimationFrame(() =>
+      b.scrollIntoView({
+        inline: "center",
+        block: "nearest",
+        behavior: "smooth",
+      }),
+    );
     pintarLista();
     irALista();
   });
@@ -273,6 +307,7 @@
     { once: true, passive: true },
   );
 
+  // Foto que no existe -> emoji de la categoría
   lista.addEventListener(
     "error",
     (e) => {
@@ -283,6 +318,8 @@
     },
     true,
   );
+
+  // ---------- Barra inteligente + volver arriba ----------
   let ultimo = window.scrollY;
   window.addEventListener(
     "scroll",
@@ -291,7 +328,9 @@
         dy = y - ultimo;
       if (Math.abs(dy) > 6) {
         const escribiendo = document.activeElement === buscador;
-        barra.classList.toggle("oculta", dy > 0 && y > 260 && !escribiendo);
+        const ocultar = dy > 0 && y > 260 && !escribiendo;
+        barra.classList.toggle("oculta", ocultar);
+        if (ocultar) colapsar();
         ultimo = y;
       }
       arriba.classList.toggle("ver", y > 700);
@@ -302,6 +341,7 @@
     window.scrollTo({ top: 0, behavior: "smooth" }),
   );
 
+  // ---------- Visor (toca un plato) ----------
   const visor = $("#visor"),
     vImg = $("#visor-img");
   let actual = 0;
