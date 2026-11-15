@@ -5,14 +5,14 @@
         "Chicharrón con Mote + Café",
         "S/ 20",
         "Sabor_de_casa/chicharron-mote-cafe.jpg",
-        "Crujiente chicharrón de cerdo acompañado de mote y café cajamarquino.",
+        "Crujiente chicharrón de cerdo acompañado de mote y café pasado.",
     ],
     [
         "Desayunos",
         "Trucha Frita con Yuca + Café",
         "S/ 18",
         "Sabor_de_casa/trucha-frita-yuca-cafe.jpg",
-        "Trucha frita acompañada de yuca sancochada y una taza de café cajamarquino.",
+        "Trucha frita acompañada de yuca sancochada y una taza de café pasado.",
     ],
     [
         "Desayunos",
